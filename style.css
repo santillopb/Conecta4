@@ -1,0 +1,9 @@
+table {
+    border: 1px solid;
+    /*-webkit-border-horizontal-spacing: 10px;*/
+    border-spacing: 10px 5px;
+}
+td {
+    border: 1px solid;
+    margin: 5px;
+}
