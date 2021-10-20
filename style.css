@@ -1,9 +1,29 @@
-table {
-    border: 1px solid;
-    /*-webkit-border-horizontal-spacing: 10px;*/
-    border-spacing: 10px 5px;
+.color-th{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: blue;
+
 }
-td {
-    border: 1px solid;
-    margin: 5px;
+.color-td{
+    background-color: blue;
+    height: 50px;
+
+}
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 2px solid red;
+}
+#container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 2px solid red;
+}
+table {
+    border-spacing: 10px 5px;
 }
