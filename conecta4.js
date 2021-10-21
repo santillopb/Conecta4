@@ -24,8 +24,11 @@ function crearTablero (tbody, filas, columnas) {
         const tr = document.createElement('tr');
         for(let y =0; y <columnas; y++){
             const td= document.createElement('td');
+            const div = document.createElement('div');
+            td.appendChild(div);
             tr.appendChild(td);
             td.classList.add('color-td');
+            div.setAttribute("id",`celda${x}_${y}`);
         }
     tbody.appendChild(tr);
     }
@@ -34,3 +37,61 @@ function crearTablero (tbody, filas, columnas) {
 
 pintarBotones(thead, columnas);
 crearTablero(tbody, filas, columnas);
+
+
+const jugador = 1;
+const cpu = 2;
+const h4 = document.querySelector("#infoTurno");
+const ganador = false;
+h4.textContent = "Turno jugador";
+// Recorremos colección botones
+document.querySelectorAll("thead button").forEach((boton, x) => {
+    boton.addEventListener("click", () => {
+        console.log(boton.getAttribute("id"));
+        console.log("Indice columna: " + x);
+        // Recorremos las filas de la columna de 5 a 0
+        let y=filas-1;
+        let pintado = false;
+        while(y>=0 && !pintado) {
+            const celda = document.querySelector(`#celda${y}_${x}`);
+            console.log("Id de la celda: " + celda.getAttribute("id"));
+            
+            // Preguntamos por el turno del jugador y si el div de la celda no esta pintada (no tiene clase)
+            if (h4.classList.contains("jugador-humano") && (celda.classList.length == 0)) {
+                // Pintamos la celda rojo
+                celda.classList.add("jugador-humano");
+                
+                // Reemplazamos la clase al h4
+                h4.classList.replace("jugador-humano", "cpu");
+                h4.textContent = "Turno CPU"
+                pintado = true;
+            } 
+            // Preguntamos por el turno de la cpu y si el div de la celda no esta pintada (no tiene clase)
+            if (h4.classList.contains("cpu") && (celda.classList.length == 0)) {
+                // Pintamos la celda amarillo
+                celda.classList.add("cpu");
+                h4.classList.replace("cpu", "jugador-humano");
+                h4.textContent = "Turno jugador"
+                pintado = true;
+            }
+            // Comprobamos ganador horizontal
+            if (x < 3) {
+                const celdaMasUnoHorizontal = document.querySelector(`#celda${y}_${x+1}`);
+                const celdaMasDosHorizontal = document.querySelector(`#celda${y}_${x+2}`);
+                const celdaMasTresHorizontal = document.querySelector(`#celda${y}_${x+3}`);
+                console.log(celdaMasUnoHorizontal.getAttribute("id"));
+                console.log(celdaMasDosHorizontal.getAttribute("id"));
+                console.log(celdaMasTresHorizontal.getAttribute("id"));
+                console.log(x);
+                if(celda.classList.contains("jugador-humano") && celdaMasUnoHorizontal.classList.contains("jugador-humano") && 
+                    celdaMasDosHorizontal.classList.contains("jugador-humano") && celdaMasTresHorizontal.classList.contains("jugador-humano")) {
+                        alert("Jugador humano ha ganado!");
+                    }
+                }
+            y--;
+        }
+    });
+});
+
+
+
