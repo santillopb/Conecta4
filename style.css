@@ -6,24 +6,9 @@
 
 }
 .color-td{
-<<<<<<< HEAD
     background-color:red;
     height: 50px;
 
-=======
-    background-color: blue;
-    width: 60px;
-    height: 60px;
-    padding: 5px;
-    border: 1px solid #000;
-}
-td div{
-    border: 1px solid #000;
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-    background-color: white;
->>>>>>> a79543ba0c37e3f73fe04b770bc57bbdc3071d80
 }
 h2 {
     display: flex;
