@@ -74,24 +74,52 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
                 h4.textContent = "Turno jugador"
                 pintado = true;
             }
-            // Comprobamos ganador horizontal
-            if (x < 3) {
-                const celdaMasUnoHorizontal = document.querySelector(`#celda${y}_${x+1}`);
-                const celdaMasDosHorizontal = document.querySelector(`#celda${y}_${x+2}`);
-                const celdaMasTresHorizontal = document.querySelector(`#celda${y}_${x+3}`);
-                console.log(celdaMasUnoHorizontal.getAttribute("id"));
-                console.log(celdaMasDosHorizontal.getAttribute("id"));
-                console.log(celdaMasTresHorizontal.getAttribute("id"));
-                console.log(x);
-                if(celda.classList.contains("jugador-humano") && celdaMasUnoHorizontal.classList.contains("jugador-humano") && 
-                    celdaMasDosHorizontal.classList.contains("jugador-humano") && celdaMasTresHorizontal.classList.contains("jugador-humano")) {
-                        alert("Jugador humano ha ganado!");
-                    }
-                }
+            
             y--;
         }
+        
+        
     });
+
 });
+//Recorrer filas columnas comprobación 4 en raya
+
+for(let x=0; x<filas; x++){
+    for(let y=0; y<columnas; y++){
+        const celda = document.querySelector(`#celda${x}_${y}`);
+        
+        if(x+3<filas){
+            const celdaMasUnoHorizontal = document.querySelector(`#celda${x+1}_${y}`);
+            const celdaMasDosHorizontal = document.querySelector(`#celda${x+2}_${y}`);
+            const celdaMasTresHorizontal = document.querySelector(`#celda${x+3}_${y}`);
+            console.log( "entra en " + celdaMasUnoHorizontal.getAttribute("id"));
+            console.log( "entra en " + celdaMasDosHorizontal.getAttribute("id"));
+            console.log( "entra en " + celdaMasTresHorizontal.getAttribute("id"));
+            console.log( "------------------------------------------");
+            if ((celda.classList.contains("jugador-humano")) && (celdaMasUnoHorizontal.classList.contains("jugador-humano"))  
+            && (celdaMasDosHorizontal.classList.contains("jugador-humano"))
+            && (celdaMasTresHorizontal.classList.contains("jugador-humano"))){
+
+                alert("Jugador, has ganado")
+            }
+        }
+    }
+}
+
+// Comprobamos ganador horizontal
+/*if (x < 3) {
+    const celdaMasUnoHorizontal = document.querySelector(`#celda${y}_${x+1}`);
+    const celdaMasDosHorizontal = document.querySelector(`#celda${y}_${x+2}`);
+    const celdaMasTresHorizontal = document.querySelector(`#celda${y}_${x+3}`);
+    console.log(celdaMasUnoHorizontal.getAttribute("id"));
+    console.log(celdaMasDosHorizontal.getAttribute("id"));
+    console.log(celdaMasTresHorizontal.getAttribute("id"));
+    console.log(x);
+    if(celda.classList.contains("jugador-humano") && celdaMasUnoHorizontal.classList.contains("jugador-humano") && 
+        celdaMasDosHorizontal.classList.contains("jugador-humano") && celdaMasTresHorizontal.classList.contains("jugador-humano")) {
+            alert("Jugador humano ha ganado!");
+        }
+    }*/
 
 
 
