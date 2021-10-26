@@ -84,7 +84,7 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
 });
 //Recorrer filas columnas comprobación 4 en raya
 
-for(let x=0; x<filas; x++){
+/*for(let x=0; x<filas; x++){
     for(let y=0; y<columnas; y++){
         const celda = document.querySelector(`#celda${x}_${y}`);
         
