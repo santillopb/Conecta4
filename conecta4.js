@@ -65,7 +65,6 @@ const ganador = false;
 h4.textContent = "Turno jugador";
 // Recorremos colección botones
 document.querySelectorAll("thead button").forEach((boton, x) => {
-
     boton.addEventListener("click", () => {
         console.log(boton.getAttribute("id"));
         console.log("Indice columna: " + x);
@@ -80,11 +79,7 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
             if (h4.classList.contains("jugador-humano") && (celda.classList.length == 0)) {
                 // Pintamos la celda rojo
                 celda.classList.add("jugador-humano");
-                if (comprobar(y,x, "jugador-humano")) {
-                    setTimeout(function () {alert("He ganado")}, 500);
-                    
-                    
-                }
+                
                 // Reemplazamos la clase al h4
                 h4.classList.replace("jugador-humano", "cpu");
                 h4.textContent = "Turno CPU"
@@ -94,16 +89,10 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
             if (h4.classList.contains("cpu") && (celda.classList.length == 0)) {
                 // Pintamos la celda amarillo
                 celda.classList.add("cpu");
-                if (comprobar(y,x, "cpu")) {
-                    setTimeout(function () {alert("Ha ganado el cpu")}, 500);
-                    
-                }
                 h4.classList.replace("cpu", "jugador-humano");
                 h4.textContent = "Turno jugador"
                 pintado = true;
-
             }
-<<<<<<< HEAD
             
             y--;
         }
@@ -111,96 +100,6 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
         
     });
 
-=======
-            // Comprobamos ganador horizontal
-            /*if (x+3 < filas) {
-                const celdaMasUnoHorizontal = document.querySelector(`#celda${y}_${x+1}`);
-                const celdaMasDosHorizontal = document.querySelector(`#celda${y}_${x+2}`);
-                const celdaMasTresHorizontal = document.querySelector(`#celda${y}_${x+3}`);
-                console.log(celdaMasUnoHorizontal.getAttribute("id"));
-                console.log(celdaMasDosHorizontal.getAttribute("id"));
-                console.log(celdaMasTresHorizontal.getAttribute("id"));
-                console.log(x);
-                if(celda.classList.contains("jugador-humano") && celdaMasUnoHorizontal.classList.contains("jugador-humano") && 
-                    celdaMasDosHorizontal.classList.contains("jugador-humano") && celdaMasTresHorizontal.classList.contains("jugador-humano")) {
-                        alert("Jugador humano ha ganado!");
-                }
-            }*/
-            // Si x=4
-            /*if (x >= 0 && x+2 < filas) {
-                // Comprobar alrededor (x+1)(x-1)(x+2)
-                const celdaMenosUnoHorizontal = document.querySelector(`#celda${y}_${x-1}`);
-                const celdaMasUnoHorizontal = document.querySelector(`#celda${y}_${x+1}`);
-                const celdaMasDosHorizontal = document.querySelector(`#celda${y}_${x+2}`);
-            }*/
-
-            // Se comprueba a la derecha
-            // Si el de la derecha tiene misma clase comprobar siguiente a la derecha
-            // Sino comprobar izquierda
-
-            // Si tiramos ficha la posicion es tope miramos izquierda
-                const celdaMenosUnoHorizontal = document.querySelector(`#celda${y}_${x-1}`);
-                const celdaMenosDosHorizontal = document.querySelector(`#celda${y}_${x-2}`);
-                const celdaMenosTresHorizontal = document.querySelector(`#celda${y}_${x-3}`);
-                const celdaMasUnoHorizontal = document.querySelector(`#celda${y}_${x+1}`);
-                const celdaMasDosHorizontal = document.querySelector(`#celda${y}_${x+2}`);
-                const celdaMasTresHorizontal = document.querySelector(`#celda${y}_${x+3}`);
-            // Si es la ultima
-            if(x == filas) {
-                if ((celda.classList.contains("jugador-humano")) &&
-                (celdaMenosUnoHorizontal.classList.contains("jugador-humano")) &&
-                (celdaMenosDosHorizontal.classList.contains("jugador-humano")) &&
-                (celdaMenosTresHorizontal.classList.contains("jugador-humano"))) {
-                    alert("He ganado por la ultima");
-                }
-                // Si es la penultima
-            } else if(x+1 == filas) {
-                if ((celda.classList.contains("jugador-humano")) &&
-                (celdaMasUnoHorizontal.classList.contains("jugador-humano")) &&
-                (celdaMenosUnoHorizontal.classList.contains("jugador-humano")) &&
-                (celdaMenosDosHorizontal.classList.contains("jugador-humano"))) {
-                    alert("He ganado por la penultima");
-                }
-            // Si es la antepenultima
-            } else if(x+2 == filas) {
-                if ((celda.classList.contains("jugador-humano")) &&
-                (celdaMasUnoHorizontal.classList.contains("jugador-humano")) &&
-                (celdaMasDosHorizontal.classList.contains("jugador-humano")) &&
-                (celdaMenosUnoHorizontal.classList.contains("jugador-humano"))) {
-                    alert("He ganado por la antepenultima");
-                }
-            }
-
-            
-            /*for(i=0; i<filas; i++) {
-                
-            }*/
-            /*for(let i=0; i<filas; i++) {
-                for(let j=0; j<columnas; j++) {
-                    if (i+3 < filas) {
-                        const celda = document.querySelector(`#celda${i}_${j}`);
-                        const celdaMasUnoHorizontal = document.querySelector(`#celda${i+1}_${j}`);
-                        const celdaMasDosHorizontal = document.querySelector(`#celda${i+2}_${j}`);
-                        const celdaMasTresHorizontal = document.querySelector(`#celda${i+3}_${j}`);
-                        console.log(celda.getAttribute("id"));
-                        console.log(celdaMasUnoHorizontal.getAttribute("id"));
-                        console.log(celdaMasDosHorizontal.getAttribute("id"));
-                        console.log(celdaMasTresHorizontal.getAttribute("id"));
-                        console.log("Esto es: " + i);
-                        if(celda.classList.contains("jugador-humano") && celdaMasUnoHorizontal.classList.contains("jugador-humano") && 
-                            celdaMasDosHorizontal.classList.contains("jugador-humano") && celdaMasTresHorizontal.classList.contains("jugador-humano")) {
-                                alert("Jugador humano ha ganado!");
-                        }
-                    }
-                }
-            }*/
-            
-            y--;
-        }
-
-    });
-    
->>>>>>> d4cc11feb9f986c7ea9631a51f90313fd96bb0f5
 });
 //Recorrer filas columnas comprobación 4 en raya
 
