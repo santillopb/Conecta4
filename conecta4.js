@@ -146,39 +146,16 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
             if (turnoJugador == 1 && (celda.classList.length == 0)) {
                 // Pintamos la celda rojo
                 celda.classList.add("jugador-humano");
-<<<<<<< HEAD
                 
                 // Reemplazamos la clase al h4
                 h4.classList.replace("jugador-humano", "cpu");
                 h4.textContent = "Turno CPU"
-=======
-                if (comprobar4(y,x,"jugador-humano")) {
-                    setTimeout(function () {alert("Gana rojo!")}, 500);
-                    ganador = true;
-                } else {
-                    turnoJugador = 2
-                    // Reemplazamos la clase al h4
-                    h4.classList.replace("jugador-humano", "cpu");
-                    h4.textContent = "Turno CPU"
-                }
->>>>>>> f10c19339686ea7e1f0ddd90a389aa3031728aa2
                 pintado = true;
             } 
             // Preguntamos por el turno de la cpu y si el div de la celda no esta pintada (no tiene clase)
             else if (turnoJugador == 2 && (celda.classList.length == 0)) {
                 // Pintamos la celda amarillo
                 celda.classList.add("cpu");
-<<<<<<< HEAD
-                h4.classList.replace("cpu", "jugador-humano");
-                h4.textContent = "Turno jugador"
-                pintado = true;
-            }
-            
-            y--;
-        }
-        
-        
-=======
                 if (comprobar4(y,x,"cpu")) {
                     setTimeout(function () {alert("Gana amarillo!")}, 500);
                     ganador = true;
@@ -218,7 +195,6 @@ document.querySelectorAll("thead button").forEach((boton, x) => {
 
             //Los contadores se tienen que reiniciar
         }
->>>>>>> f10c19339686ea7e1f0ddd90a389aa3031728aa2
     });
 
 });
