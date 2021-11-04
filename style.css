@@ -37,17 +37,33 @@ table {
     /*border-spacing: 10px 5px;*/
     border-collapse: collapse;
 }
-.jugador-humano{
+.player{
     background-color: red;
 }
 .cpu {
     background-color: yellow;
 }
-#infoTurno.jugador-humano {
+
+#infoTurn.player {
     background-color: white;
     color: red;
 }
-#infoTurno.cpu {
+#infoTurn.cpu {
     background-color: white;
     color: yellow;
+}
+#infoWinner {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #000;
+    color: blue;
+    font-size: 20px;
+    font-weight:900;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 2px;
+}
+#btnPlayAgain {
+    display: none;
 }
