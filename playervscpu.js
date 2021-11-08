@@ -42,7 +42,6 @@ function checkH(y,x,cellClass) {
             contHorizontal++;
             b--;
         }
-        console.log("Contador horizontal: " + contHorizontal);
     return contHorizontal >= 4;
 }
 function checkV(y,x,cellClass) {
@@ -51,7 +50,6 @@ function checkV(y,x,cellClass) {
             contVertical++;
             y++;
         }
-        console.log("Contador vertical: " + contVertical);
     return contVertical >= 4;    
 }
 function checkDiagAsc(y,x,cellClass){
@@ -70,7 +68,6 @@ function checkDiagAsc(y,x,cellClass){
         b--;
         a--;
     }
-    console.log("Contador DiagAsc: " + contDiagAsc);
     return contDiagAsc >= 4;
 }
 function checkDiagDesc(y,x,cellClass){
@@ -89,7 +86,6 @@ function checkDiagDesc(y,x,cellClass){
         b--;
         a++;
     }
-    console.log("Contador DiagDesc: " + contDiagDesc);
     return contDiagDesc >=4;
 }
 
@@ -111,7 +107,6 @@ function checkTie(rows, columns) {
             const cell = document.querySelector(`#cell${y}_${x}`);
             if(cell.classList.length!=0) {
                 contPaintedCells++;
-                //console.log("cells pintadas: " + contPaintedCells);
             }
         }
     }
@@ -123,8 +118,8 @@ const columns = 7;
 let playerTurn = 1;
 const thead = document.querySelector('thead');
 const tbody = document.querySelector('tbody');
-const h4 = document.querySelector("#infoTurn");
-const h3 = document.querySelector("#infoWinner");
+const infoTurn = document.querySelector("#infoTurn");
+const infoWinner = document.querySelector("#infoWinner");
 let winner = false;
 let winnerRed = false;
 let winnerYellow = false;
@@ -135,148 +130,96 @@ const btnPlayAgain = document.querySelector("#btnPlayAgain");
 paintButtons(thead, columns);
 createBoard(tbody, rows, columns);
 
-document.querySelectorAll("thead button").forEach((boton, x) => {
-
-    boton.addEventListener("click", () => {
-        // Recorremos las rows de la columna de 5 a 0
+document.querySelectorAll("thead button").forEach((button, x) => {
+    button.addEventListener("click", () => {
         let y=rows-1;
         let painted = false;
         CPUThrow = Math.floor(Math.random() * ((columns) - 0)) + 0;
-        console.log(`---------------------------`);
-        console.log(`Tirada CPU ${CPUThrow}`);
         while(y>=0 && !painted) {
             const cell = document.querySelector(`#cell${y}_${x}`);
-            console.log("Id de la cell: " + cell.getAttribute("id"));
-            
-            // Preguntamos por el turno del jugador y si el div de la cell no esta pintada (no tiene clase)
             if (playerTurn == 1 && cell.classList.length == 0) {
-                // Pintamos la cell rojo
                 cell.classList.add("player");
                 if (checkConnect4(y,x,"player")) {
-                    //setTimeout(function () {alert("Gana rojo!")}, 500);
                     winner = true;
                     winnerRed = true;
                 } else {
                     playerTurn = 2
-                    // Reemplazamos la clase al h4
-                    if (h4.classList.length == 0) {
-                        h4.classList.add("cpu");
+                    if (infoTurn.classList.length == 0) {
+                        infoTurn.classList.add("cpu");
                     } else {
-                        h4.classList.replace("player", "cpu");
+                        infoTurn.classList.replace("player", "cpu");
                     }
-                    
-                    h4.textContent = "CPU turn!";
+                    infoTurn.textContent = "CPU turn!";
                 }
                 painted = true;
             } 
-            // Preguntamos por el turno de la cpu y si el div de la cell no esta pintada (no tiene clase)
             if (playerTurn == 2) {
-                // Declaramos vble y2
                 let y2 = rows-1;
-                // Preguntamos si la fila esta pintada 
-                //sino se asigna la cell una posicion arriba de la fila
-
                 let cellCPU = document.querySelector(`#cell${y2}_${CPUThrow}`);
-               
                 while (y2>0 && cellCPU.classList.length == 1) {
                     y2--;
                     cellCPU = document.querySelector(`#cell${y2}_${CPUThrow}`);
                 }
-
-                console.log("Y2: " + y2);
-                console.log("Tirada X: " + CPUThrow);
-                console.log("Id de la cell CPU: " + cellCPU.getAttribute("id"));
-                
                 while(document.querySelector(`#cell${0}_${CPUThrow}`).classList.length == 1) {
-                    console.log("PASA MATH RANDOM");
                     CPUThrow = Math.floor(Math.random() * ((columns) - 0)) + 0;
-                    console.log("Math random de nuevo: " + CPUThrow);
-                    //cellCPU = document.querySelector(`#cell${y2}_${CPUThrow}`);
                     y2 = rows-1;
-                    while (y2>=0 && cellCPU.classList.length == 1) {
-                        cellCPU = document.querySelector(`#cell${y2}_${CPUThrow}`);
-                        console.log("Y2 WHILE: " + y2);
-                        y2--;                        
+                    while (y2>0 && cellCPU.classList.length == 1) {
+                        y2--;
+                        cellCPU = document.querySelector(`#cell${y2}_${CPUThrow}`);                                                
                     }
-                    /*if (y2 == -1) {
-                        y2 = 0;
-                        console.log("El y2 era -1 y lo hemos pasado a 0");
-                    }*/
-                    y2++;
-                    console.log("Sumamos +1 a la y2: " + y2);
-                    console.log("Y2: " + y2);
-                    console.log("Tirada X: " + CPUThrow);
-                    //console.log("Id de la cell CPU: " + cellCPU.getAttribute("id"));
-                    
                 }
-                // Pintamos la cell amarillo
                 cellCPU.classList.add("cpu");
                 if (checkConnect4(y2,CPUThrow,"cpu")) {
-                    //setTimeout(function () {alert("Gana amarillo!")}, 1000);
                     winner = true;
                     winnerYellow = true;
                 } else {
                     playerTurn = 1;
-                    
                     setTimeout(function(){
-                        h4.classList.replace("cpu", "player");
-                        h4.textContent = "Player turn!";
+                        infoTurn.classList.replace("cpu", "player");
+                        infoTurn.textContent = "Player turn!";
                     },500);
                 }
-                //console.log("PASA CPU");
                 painted = true;
             }
             y--;
         }      
         tie = checkTie(rows,columns);
         if(tie) {
-            h3.setAttribute("style","display:flex;");
-            h3.textContent = "Tie!"
+            infoWinner.setAttribute("style","display:flex;");
+            infoWinner.textContent = "Tie!"
         }
         if(winnerRed) {
-            h3.setAttribute("style","display:flex;");
-            h3.innerHTML = "<span>Red</span> &nbsp; wins!"
-            document.querySelector("h3 span").setAttribute("style", "color: red");
-            //h3.textContent = "Red wins!"
-            
+            infoWinner.setAttribute("style","display:flex;");
+            infoWinner.innerHTML = "<span>Red</span> &nbsp; wins!"
+            document.querySelector("#infoWinner span").setAttribute("style", "color: red");            
         }
         if(winnerYellow) {
-            h3.setAttribute("style","display:flex;");
-            h3.innerHTML = "<span>Yellow </span> &nbsp; wins!"
-            document.querySelector("h3 span").setAttribute("style", "color: yellow");
-            //h3.textContent = "Yellow wins!"
-            
+            infoWinner.setAttribute("style","display:flex;");
+            infoWinner.innerHTML = "<span>Yellow </span> &nbsp; wins!"
+            document.querySelector("#infoWinner span").setAttribute("style", "color: yellow");
         }
         if(tie || winner) {
-            document.querySelectorAll("thead button").forEach((boton) => {
-                boton.setAttribute("disabled",true);
+            document.querySelectorAll("thead button").forEach((button) => {
+                button.setAttribute("disabled",true);
             });
-            
             btnPlayAgain.setAttribute("style", "display: flex; justify-content: center");
-            //al clicar limpia las clases de las cells(divs)
             btnPlayAgain.addEventListener("click", e => {
-                
-                // Recorrer cells
                 document.querySelectorAll("tbody div").forEach((div) => {
-                    // Quitamos clase a cada div
                     div.classList.remove("player","cpu");
                 });
-                // Y habilitamos los botones cabecera
-                document.querySelectorAll("thead button").forEach((boton) => {
-                    if (boton.getAttribute("disabled") == "true") {
-                        boton.removeAttribute("disabled");
+                document.querySelectorAll("thead button").forEach((button) => {
+                    if (button.getAttribute("disabled") == "true") {
+                        button.removeAttribute("disabled");
                     }
                 });
-                // Ponemos invisible al h3
-                h3.setAttribute("style","display: none")
-                //Reiniciamos vbles booleanas a false
+                infoWinner.setAttribute("style","display: none")
                 winner = false;
+                winnerRed = false;
+                winnerYellow = false;
                 tie = false;
-                // Borramos btnPlayAgain
                 e.target.setAttribute("style", "display: none");
-                // Info cadena vacia y le quitamos las clases
-                h4.textContent = "";
-                h4.classList.remove("player","cpu");
+                infoTurn.textContent = "";
+                infoTurn.classList.remove("player","cpu");
                 playerTurn = 1;
             });
         }
