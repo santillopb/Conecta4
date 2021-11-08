@@ -1,29 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Ruslan+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylePVSP.css">
     <title>Player vs Player</title>
 </head>
 <body>
-    <h2>Conecta 4!</h2>
-    <div id="container">
-        <table>
+    <div id="container"></div>
+        <header>
+        <a href="index.html"><h2>Conecta 4<span id="e">!</span> </h2></a>
+        </header>
+        <main>
+            <table>
 
-            <thead>
+                 <thead>
 
-             </thead>
-            <tbody>
+                 </thead>
+                 <tbody>
 
-            </tbody>
-        </table>
-        <h4 id="infoTurn"></h4>
-        <h3 id="infoWinner"></h3>
-        <button id="btnRandomTurn">Get random player!</button>
-        <button id="btnPlayAgain">Play again!</button>
+                </tbody>
+            </table>
+    
+
+            <h4 id="infoTurn"></h4>
+            <h3 id="infoWinner"></h3>
+            <button id="btnRandomTurn">Get random player!</button>
+            <button id="btnPlayAgain">Play again!</button>
+        </main>
     </div>
+    <footer>
+        <div>
+           <p>© 2021 Copyright Conecta 4 Realizado por Santi Llop & Ester Martínez</p>
+        </div>
+        <div id="icon"><a href="#"><i class="github fab fa-github"></i></a></div>
+    </footer>
+ 
+    <script src="playervsplayer.js"></script>        
 </body>
-<script src="playervsplayer.js"></script>
 </html>
